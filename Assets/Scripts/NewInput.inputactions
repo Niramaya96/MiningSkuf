@@ -37,8 +37,8 @@
                 {
                     "name": "",
                     "id": "0f8674ba-e73a-4224-9030-120f1e5bdf05",
-                    "path": "",
-                    "interactions": "",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Mining",

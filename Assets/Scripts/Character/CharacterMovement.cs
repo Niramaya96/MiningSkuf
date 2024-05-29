@@ -20,15 +20,6 @@ public class CharacterMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
     }
-    private void Update()
-    {
-        _moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
-        {
-            Jump();
-        }
-    }
 
     private void FixedUpdate()
     {
@@ -39,16 +30,20 @@ public class CharacterMovement : MonoBehaviour
             _velocity = -2;
         }
 
-        Move(_moveDirection);
+        Move();
         DoGravity();
 
     }
-    private void Move(Vector3 moveDirection)
+    public void ReadMoveDirection(Vector3 moveDirection)
     {
-        _characterController.Move(moveDirection * _moveSpeed * Time.fixedDeltaTime);
+        _moveDirection = moveDirection;
+    }
+    private void Move()
+    {
+        _characterController.Move(_moveDirection * _moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void Jump()
+    public void Jump()
     {
         _velocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
     }
