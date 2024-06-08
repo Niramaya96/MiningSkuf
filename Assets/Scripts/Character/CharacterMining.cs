@@ -45,12 +45,12 @@ public class CharacterMining : MonoBehaviour
     {
         for (int i = 0; i < _hitCount; i++)
         {
-            if (_hitColliders[i].TryGetComponent(out ResourceV2 resource) == false)
+            if (_hitColliders[i].TryGetComponent(out ResourceAdapter resource) == false)
             {
                 Debug.Log("Не найдено");
+                continue;
             }
-            
-            Debug.Log(resource.name);
+            Debug.Log(resource.Type);
         }
     }
 }
