@@ -6,7 +6,7 @@ namespace Lessons
     public class Resource : IResource
     {
         public event Action<int, int> Changed;
-        public ResourseType ResourseType { get; }
+        public ResourceType ResourseType { get; }
 
         private int _amount;
         public int Amount
@@ -24,7 +24,7 @@ namespace Lessons
             }
         }
 
-        public Resource(ResourseType resourseType, int amountByDefault = default)
+        public Resource(ResourceType resourseType, int amountByDefault = default)
         {
             ResourseType = resourseType;
             Amount = amountByDefault;

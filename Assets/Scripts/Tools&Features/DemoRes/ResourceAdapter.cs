@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ResourceAdapter : MonoBehaviour
 {
-    [SerializeField] private ResourseType _type;
+    [SerializeField] private ResourceType _type;
     [SerializeField] private int _amount;
 
     private Resource Resource;
 
-    public ResourseType Type => _type;
+    public ResourceType Type => _type;
 
     private void Awake()
     {

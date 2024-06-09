@@ -5,7 +5,7 @@ namespace Lessons
     public interface IResource
     {
         event Action<int, int> Changed;
-        ResourseType ResourseType { get; }
+        ResourceType ResourseType { get; }
         int Amount { get; }
     }
 }

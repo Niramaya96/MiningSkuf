@@ -8,9 +8,9 @@ namespace Lessons
 {
     public class ResourcesFeature
     {
-        public readonly Dictionary<ResourseType, Resource> _resources;
+        public readonly Dictionary<ResourceType, Resource> _resources;
 
-        public event Action<ResourseType, int, int> ResourceChanged;
+        public event Action<ResourceType, int, int> ResourceChanged;
 
         public ResourcesFeature(Resource[] resources)
         {
@@ -25,26 +25,26 @@ namespace Lessons
             }
         }
 
-        public void AddResource(ResourseType type, int value)
+        public void AddResource(ResourceType type, int value)
         {
             var res = _resources[type];
 
             res.Amount += value;
         }
-        public void SpendResource(ResourseType type, int value)
+        public void SpendResource(ResourceType type, int value)
         {
             var res = _resources[type];
 
             res.Amount -= value;
         }
-        public bool HasResource(ResourseType type, int value)
+        public bool HasResource(ResourceType type, int value)
         {
             var res = _resources[type];
 
             return res.Amount >= value;
         }
 
-        public string GetResourceString(ResourseType type)
+        public string GetResourceString(ResourceType type)
         {
             return _resources[type].Amount.ToString();
         }

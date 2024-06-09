@@ -1,6 +1,6 @@
 namespace Lessons
 {
-    public enum ResourseType 
+    public enum ResourceType 
     {
         Wood,
         Stone,

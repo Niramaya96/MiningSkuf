@@ -1,42 +1,46 @@
 using Lessons;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 public class CharacterInventory : MonoBehaviour
 {
-    private ResourcesFeature _resouses;
+    [SerializeField] private InventoryUI _inventoryDisplay;
+
+    private ResourcesFeature _resourñes;
 
     private void Awake()
     {
-        var wood = new Resource(ResourseType.Wood);
-        var iron = new Resource(ResourseType.Iron);
-        var stone = new Resource(ResourseType.Stone);
+        var wood = new Resource(ResourceType.Wood);
+        var iron = new Resource(ResourceType.Iron);
+        var stone = new Resource(ResourceType.Stone);
 
         var res = new[] {wood, iron, stone};
 
-        _resouses = new ResourcesFeature(res);
+        _resourñes = new ResourcesFeature(res);
 
-        _resouses.ResourceChanged += OnResourceChanged;
+        _resourñes.ResourceChanged += OnResourceChanged;
     }
-    public void AddResource(ResourseType resourceType,int value)
+    public void AddResource(ResourceType resourceType,int value)
     {
-        _resouses.AddResource(resourceType, value);
+        _resourñes.AddResource(resourceType, value);
     }
-    public void SpendResource(ResourseType resourseType,int value)
+    public void SpendResource(ResourceType resourceType,int value)
     {
-        bool hasRes = _resouses.HasResource(resourseType, value);
+        bool hasResourñes = _resourñes.HasResource(resourceType, value);
 
-        if (hasRes)
+        if (hasResourñes)
         {
-            _resouses.SpendResource(resourseType, value);
+            _resourñes.SpendResource(resourceType, value);
         }
     }
-    private void OnResourceChanged(ResourseType type,int oldValue,int newValue)
+    private void OnResourceChanged(ResourceType type,int oldValue,int newValue)
     {
         Debug.Log($"Resource amount changed: {type} - Old:{oldValue} - New:{newValue}");
+        _inventoryDisplay.ChangeResourceValueDisplay(type, newValue);
     }
 
     private void OnDestroy()
     {
-        _resouses.ResourceChanged -= OnResourceChanged;
+        _resourñes.ResourceChanged -= OnResourceChanged;
     }
 }
