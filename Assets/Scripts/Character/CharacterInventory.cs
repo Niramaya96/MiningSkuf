@@ -32,7 +32,7 @@ public class CharacterInventory : MonoBehaviour
     }
     private void OnResourceChanged(ResourseType type,int oldValue,int newValue)
     {
-        Debug.Log($"Resource amount changed: {type} - {oldValue} - {newValue}");
+        Debug.Log($"Resource amount changed: {type} - Old:{oldValue} - New:{newValue}");
     }
 
     private void OnDestroy()

@@ -7,6 +7,9 @@ public class CharacterMining : MonoBehaviour
     [SerializeField,Min(0f)] private float _sphereRadius;
     [SerializeField] private LayerMask _resourseLayer;
 
+    [Header("Inventory")]
+    [SerializeField] private CharacterInventory _inventory;
+
     [Header("Gizmos")]
     [SerializeField] private Color _gizmosColor;
 
@@ -15,7 +18,7 @@ public class CharacterMining : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
             TryGetResources();
 
     }
@@ -31,7 +34,7 @@ public class CharacterMining : MonoBehaviour
     {
        if (TryFindResources())
        {
-            PerformMining();
+            PerformGather();
        }
     }
 
@@ -41,7 +44,7 @@ public class CharacterMining : MonoBehaviour
         _hitCount = Physics.OverlapSphereNonAlloc(position, _sphereRadius, _hitColliders, _resourseLayer.value);
         return _hitCount > 0;
     }
-    private void PerformMining()
+    private void PerformGather()
     {
         for (int i = 0; i < _hitCount; i++)
         {
@@ -50,7 +53,10 @@ public class CharacterMining : MonoBehaviour
                 Debug.Log("Не найдено");
                 continue;
             }
-            Debug.Log(resource.Type);
+
+            var amount = resource.Gather();
+            var type = resource.Type;
+            _inventory.AddResource(type,amount);
         }
     }
 }
